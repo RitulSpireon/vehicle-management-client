@@ -40,6 +40,8 @@ function deleteVehicle(id) {
         .then(response => {
             if (response.status === 201 || response.status === 200) {
                 window.alert("Success");
+                window.location.reload();
+
             } else {
                 window.alert("Service Status should be done");
             }
@@ -70,6 +72,8 @@ function updateVehicleStatusAsDone(vehicle) {
         .then(response => {
             if (response.status === 201 || response.status === 200) {
                 window.alert("Service Completed");
+                window.location.reload();
+
             } else {
                 window.alert("Service already completed");
             }

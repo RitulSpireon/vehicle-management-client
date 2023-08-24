@@ -34,6 +34,9 @@ const AddNewVehicle = () => {
             .then(response => {
                 if (response.status === 201 || response.status === 200) {
                     window.alert("Success");
+                    // Reload the page after a successful response
+                    window.location.reload();
+
                 } else {
                     window.alert("Something went wrong");
                 }
