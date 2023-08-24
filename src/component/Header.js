@@ -1,11 +1,12 @@
 import React from "react";
+import {Divider, Typography} from "@mui/material";
 
-function Header({name}) {
-    return (
-     <div>
-         <h1>{name}</h1>
-     </div>
-
+function Header() {
+    return(
+        <div>
+          <Typography variant = "h2" >Vehicle Management Application</Typography>
+            <Divider />
+        </div>
     );
 }
 
