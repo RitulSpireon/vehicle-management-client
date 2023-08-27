@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {FormControl, FormLabel, TextField, Button, Box} from '@mui/material';
+import {FormLabel, TextField, Button, Grid} from '@mui/material';
 
 const AddNewVehicle = () => {
     // Initialize state to store form data
@@ -47,10 +47,11 @@ const AddNewVehicle = () => {
     };
 
     return (
-        <div>
+        <div >
             <form onSubmit={handleSubmit}>
-                <FormControl>
-                    <FormLabel>Vehicle Id</FormLabel>
+                <Grid container spacing={3}>
+                <Grid item md={2}>
+                    <FormLabel>Vehicle Id</FormLabel><br/>
                     <TextField
                         name = "id"
                         value={formData.id}
@@ -58,6 +59,8 @@ const AddNewVehicle = () => {
                         size="small"
                         required
                     />
+                </Grid>
+                <Grid item md={2}>
                     <FormLabel>Owner name</FormLabel>
                     <TextField
                         name="ownerName"
@@ -66,6 +69,8 @@ const AddNewVehicle = () => {
                         size="small"
                         required
                     />
+                </Grid>
+                <Grid item md={2}>
                     <FormLabel>Vehicle Name</FormLabel>
                     <TextField
                         name = "vehicleName"
@@ -74,6 +79,8 @@ const AddNewVehicle = () => {
                         size="small"
                         required
                     />
+                </Grid>
+                <Grid item md={2}>
                     <FormLabel>Vehicle Description</FormLabel>
                     <TextField
                         name="vehicleDescription"
@@ -82,6 +89,8 @@ const AddNewVehicle = () => {
                         size="small"
                         required
                     />
+                </Grid>
+                    <Grid item md={2}>
                     <FormLabel>Service Status</FormLabel>
                     <TextField
                         name="serviceStatus"
@@ -90,8 +99,11 @@ const AddNewVehicle = () => {
                         size="small"
                         required
                     />
+                    </Grid>
+                    <Grid item md={2}><br/>
                     <Button type="submit" variant="contained" color="success" >Add Vehicle</Button>
-                </FormControl>
+                    </Grid>
+                </Grid>
             </form>
         </div>
     );

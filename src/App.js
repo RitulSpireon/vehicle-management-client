@@ -9,6 +9,7 @@ function App() {
   return (
       <div>
           <Header />
+          <br/>
           <AddNewVehicle />
           <VehiclesTable />
       </div>

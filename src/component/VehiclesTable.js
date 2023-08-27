@@ -7,6 +7,7 @@ import {
     TableContainer,
     TableHead, TableRow,
 } from "@mui/material";
+import AlertDialog from "./Dialog";
 
 const VehiclesTable=()=>{
     const [data, setData] = useState([])
@@ -28,65 +29,11 @@ const VehiclesTable=()=>{
     )
 }
 
-function deleteVehicle(id) {
-    const url ="http://localhost:8081/vehicles/"+id;
-    fetch(url, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        }
-    })
-        .then(response => {
-            if (response.status === 201 || response.status === 200) {
-                window.alert("Success");
-                window.location.reload();
-
-            } else {
-                window.alert("Service Status should be done");
-            }
-        })
-        .catch(e => {
-            console.log("e", e);
-        });
-};
-
-function updateVehicleStatusAsDone(vehicle) {
-    const data = {
-        id: vehicle.id,
-        ownerName: vehicle.ownerName,
-        vehicleName: vehicle.vehicleName,
-        vehicleDescription: vehicle.vehicleDescription,
-        serviceStatus: 'Done',
-    }
-
-    const url = "http://localhost:8081/vehicles";
-    fetch(url, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        },
-        body: JSON.stringify(data)
-    })
-        .then(response => {
-            if (response.status === 201 || response.status === 200) {
-                window.alert("Service Completed");
-                window.location.reload();
-
-            } else {
-                window.alert("Service already completed");
-            }
-        })
-        .catch(e => {
-            console.log("e", e);
-        });
-}
 
 function VehicleDataDisplay(vehicleDetails) {
 
     return(
-            <TableContainer >
+            <TableContainer>
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -107,8 +54,8 @@ function VehicleDataDisplay(vehicleDetails) {
                                 <TableCell>{vehicle.vehicleDescription}</TableCell>
                                 <TableCell>{vehicle.serviceStatus}</TableCell>
                                 <TableCell>
-                                    <Button onClick={() => deleteVehicle(vehicle.id)} >Delete</Button>
-                                    <Button onClick={() => updateVehicleStatusAsDone(vehicle)}>Complete Service</Button>
+                                    <AlertDialog vehicle={vehicle} buttonName="Delete" heading={"Are you sure, you want to delete vehicle?"} action="delete" />
+                                    <AlertDialog vehicle={vehicle} buttonName="Complete Service" heading={"Are you sure service completed?"} action="update" />
                                 </TableCell>
                             </TableRow>
                         ))}
